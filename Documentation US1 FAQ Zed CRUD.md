@@ -36,3 +36,14 @@ To deactivate the FAQ you should go to the left navigation and choose Administra
 You will be redirected to the FAQ table in which you will see all active FAQs with brief answers.
 Deactivate button is in the end of each line. Press it, and the FAQ will be deactivated.
 It means that you will not see it in Administration > FAQ > List, but it is still in the database, and it can be restored.
+
+## Database scheme
+Is under src/Pyz/Shared/Faq/Transfer/faq.transfer.xml
+```bash
+<transfer name="Faq">
+        <property name="idFaq" type="int"/>
+        <property name="name" type="string"/>
+        <property name="answer" type="string"/>
+        <property name="active" type="int"/>
+    </transfer>
+```
