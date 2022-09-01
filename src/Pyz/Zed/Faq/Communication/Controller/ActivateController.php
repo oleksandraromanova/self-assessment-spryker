@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @method \Pyz\Zed\Faq\Communication\FaqCommunicationFactory getFactory()
  * @method \Pyz\Zed\Faq\Business\FaqFacade getFacade()
  */
-class DeactivateController extends AbstractController
+class ActivateController extends AbstractController
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -29,7 +29,7 @@ class DeactivateController extends AbstractController
             ->setIdFaq($idFaq)
             ->setName($faq->getName())
             ->setAnswer($faq->getAnswer())
-            ->setActive('0');
+            ->setActive('1');
 
 
         $faqForm = $this->getFactory()
