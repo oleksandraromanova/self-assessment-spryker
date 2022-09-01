@@ -48,3 +48,5 @@ class ActivateController extends AbstractController
         ]);
     }
 }
+
+
