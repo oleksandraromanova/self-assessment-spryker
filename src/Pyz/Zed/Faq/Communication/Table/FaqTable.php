@@ -83,6 +83,22 @@ class FaqTable extends AbstractTable
                     PyzFaqTableMap::COL_DEACTIVATE =>
                         $this->generateViewButton('/faq/deactivate?id-faq=' . $idFaq, 'Deactivate')
                 ];
+            }else{
+                $faqTableRows[] = [
+                    PyzFaqTableMap::COL_NAME =>
+                        $faqDataItem[PyzFaqTableMap::COL_NAME],
+                    PyzFaqTableMap::COL_ANSWER =>
+                        $faqDataItem[PyzFaqTableMap:: COL_ANSWER],
+                    PyzFaqTableMap::COL_EDIT =>
+                        $this->generateEditButton('/faq/edit?id-faq=' . $idFaq, 'Edit'),
+                    PyzFaqTableMap::COL_DELETE =>
+                        $this->generateRemoveButton('/faq/delete?id-faq=' . $idFaq, 'Delete', [
+                            'id-faq' => $idFaq,
+                            'class' => 'remove-item',
+                        ]),
+                    PyzFaqTableMap::COL_DEACTIVATE =>
+                        $this->generateEditButton('/faq/activate?id-faq=' . $idFaq, 'Activate')
+                ];
             }
 
 
