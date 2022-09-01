@@ -9,5 +9,14 @@
         <property name="answer" type="string"/>
         <property name="active" type="int"/>
     </transfer>
+    <transfer name="RestFaqsResponseAttributes">
+        <property name="name" type="string"/>
+        <property name="answer" type="string"/>
+        <property name="active" type="int"/>
+    </transfer>
+    <transfer name="FaqCollection">
+        <property name="faqs" type="Faq[]" singular="faq"/>
+    </transfer>
+
 
 </transfers>
