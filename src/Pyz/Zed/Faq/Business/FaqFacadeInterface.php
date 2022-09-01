@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Faq\Business;
 
+use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
 
 interface FaqFacadeInterface
@@ -42,5 +43,12 @@ interface FaqFacadeInterface
      * @return \Generated\Shared\Transfer\FaqTransfer|null
      */
     public function findFaqById(int $idFaq): ?FaqTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     */
+    public function getFaqCollection(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer;
+
 
 }

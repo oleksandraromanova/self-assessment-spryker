@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Faq\Business;
 
+use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -59,5 +60,17 @@ class FaqFacade extends AbstractFacade implements FaqFacadeInterface
             ->createFaqReader()
             ->findFaqById($idFaq);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     */
+    public function getFaqCollection(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        return $this->getFactory()
+            ->createFaqReader()
+            ->getFaqCollection($faqsRestApiTransfer);
+    }
+
 
 }

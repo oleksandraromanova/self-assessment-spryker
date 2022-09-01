@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Faq\Business\Faq;
 
+use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
 use Pyz\Zed\Faq\Persistence\FaqRepositoryInterface;
 
@@ -26,4 +27,14 @@ class FaqReader implements FaqReaderInterface
     {
         return $this->faqRepository->findFaqById($idFaq);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     */
+    public function getFaqCollection(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        return $this->faqRepository->getFaqCollection($faqsRestApiTransfer);
+    }
+
 }
