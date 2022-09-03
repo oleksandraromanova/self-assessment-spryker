@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Faq\Business\Faq;
 
+use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
 use Pyz\Zed\Faq\Persistence\FaqEntityManagerInterface;
 
@@ -26,5 +27,15 @@ class FaqSaver implements FaqSaverInterface
     public function save(FaqTransfer $faqTransfer): FaqTransfer
     {
         return $this->faqEntityManager->saveFaq($faqTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer
+     */
+    public function saveRestApiFaq(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        return $this->faqEntityManager->saveRestApiFaq($faqsRestApiTransfer);
     }
 }

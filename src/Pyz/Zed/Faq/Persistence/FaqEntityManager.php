@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Faq\Persistence;
 
+use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
 use Orm\Zed\Faq\Persistence\PyzFaqQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
@@ -25,6 +26,26 @@ class FaqEntityManager extends AbstractEntityManager implements FaqEntityManager
 // update transfer based on entity (like id_faq field)
         $faqTransfer->fromArray($faqEntity->toArray());
         return $faqTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer
+     * @throws \Propel\Runtime\Exception\PropelException
+     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
+     */
+    public function saveRestApiFaq(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        $faqEntity = $this->createPyzFaqQuery()
+            ->filterByIdFaq('23')
+            ->findOneOrCreate();
+// fill up entity
+        $faqEntity->fromArray($faqsRestApiTransfer->toArray());
+        $faqEntity->save();
+// update transfer based on entity (like id_faq field)
+        $faqsRestApiTransfer->fromArray($faqEntity->toArray());
+        return $faqsRestApiTransfer;
     }
 
     /**

@@ -20,4 +20,15 @@ class FaqsRestApiClient extends AbstractClient implements FaqsRestApiClientInter
             ->createFaqZedStub()
             ->getFaqCollection($faqCollectionTransfer);
     }
+
+    /**
+     * @api
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer
+     */
+    public function createFaq(FaqCollectionTransfer $faqCollectionTransfer): FaqCollectionTransfer
+    {
+        return $this->getFactory()
+            ->createFaqZedStub()
+            ->createFaq($faqCollectionTransfer);
+    }
 }

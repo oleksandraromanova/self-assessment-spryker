@@ -29,6 +29,22 @@ class FaqFacade extends AbstractFacade implements FaqFacadeInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer
+     * @api
+     *
+     */
+    public function createRestApiFaq(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        return $this->getFactory()
+            ->createFaqSaver()
+            ->saveRestApiFaq($faqsRestApiTransfer);
+    }
+
+    /**
      * {@inheritdoc }
      *
      * @api

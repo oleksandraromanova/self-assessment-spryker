@@ -50,5 +50,16 @@ interface FaqFacadeInterface
      */
     public function getFaqCollection(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer;
 
+    /**
+     * Specification:
+     * - creates Faq
+     *
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer
+     * @api
+     *
+     */
+    public function createRestApiFaq(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer;
 
 }
