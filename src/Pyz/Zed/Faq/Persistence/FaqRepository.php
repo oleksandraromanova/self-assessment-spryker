@@ -38,7 +38,7 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
      *
      * @return \Generated\Shared\Transfer\FaqTransfer
      */
-    private function mapEntityToTransfer(PyzFaq $faqEntity): FaqTransfer
+    public function mapEntityToTransfer(PyzFaq $faqEntity): FaqTransfer
     {
         return (new FaqTransfer())->fromArray($faqEntity->toArray());
     }
@@ -58,6 +58,25 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
         }
 
         return $faqsRestApiTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     * @return \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     * //* @return array
+     */
+    public function getFaqs(FaqTransfer $faqTransfer): FaqTransfer
+    {
+        $faqs = $this->createPyzFaqQuery()
+            ->find();
+
+        foreach ($faqs as $faqEntity) {
+            $faqTransfer = (new FaqTransfer())->fromArray($faqEntity->toArray());
+            //$faqTransfer->toArray();
+
+        }
+
+        return $faqTransfer;
     }
 
 }
