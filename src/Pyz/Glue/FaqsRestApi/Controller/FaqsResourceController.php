@@ -32,7 +32,7 @@ class FaqsResourceController extends AbstractController
     {
         return $this->getFactory()
             ->createFaqsReader()
-            ->getFaqs($restRequest);
+            ->createFaq($restRequest);
     }
 
 

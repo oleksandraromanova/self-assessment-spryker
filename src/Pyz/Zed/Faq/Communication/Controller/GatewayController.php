@@ -19,4 +19,15 @@ class GatewayController extends AbstractGatewayController
     {
         return $this->getFacade()->getFaqCollection($faqsRestApiTransfer);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     */
+    public function createRestApiFaqAction(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        return $this->getFacade()->createRestApiFaq($faqsRestApiTransfer);
+
+    }
 }
