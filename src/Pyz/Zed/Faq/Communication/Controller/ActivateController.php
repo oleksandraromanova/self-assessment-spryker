@@ -39,7 +39,7 @@ class ActivateController extends AbstractController
         if ($faqForm->isSubmitted() && $faqForm->isValid()) {
             $this->getFacade()
                 ->saveFaq($faqTransfer);
-            $this->addSuccessMessage('Faq was deactivated.');
+            $this->addSuccessMessage('Faq was activated.');
             return $this->redirectResponse('/faq/list');
         }
 

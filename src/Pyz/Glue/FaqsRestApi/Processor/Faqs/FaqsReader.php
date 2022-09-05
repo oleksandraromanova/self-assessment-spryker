@@ -49,13 +49,13 @@ class FaqsReader implements FaqsReaderInterface
         $idFaq = $restRequest->getResource()->getId();
         $faqCollectionTransfer = $this->faqsRestApiClient->getFaqCollection(new FaqCollectionTransfer());
 
-        if($idFaq){
+        if ($idFaq) {
             $idArray = [];
             foreach ($faqCollectionTransfer->getFaqs()
                      as $faqTransfer) {
                 $idFaqTransfer = $faqTransfer->getIdFaq();
                 $idArray[] = $idFaqTransfer;
-                if($idFaq == $idFaqTransfer){
+                if ($idFaq == $idFaqTransfer) {
                     $restResource = $this->restResourceBuilder->createRestResource(
                         FaqsRestApiConfig::RESOURCE_FAQS,
                         $faqTransfer->getIdFaq(),
@@ -67,13 +67,13 @@ class FaqsReader implements FaqsReaderInterface
 
             }
             $isInArray = in_array($idFaq, $idArray);
-            if($isInArray != 1){
+            if ($isInArray != 1) {
                 $restResource = $this->restResourceBuilder->createRestResource(
                     FaqsRestApiConfig::ERROR_NO_ID
                 );
                 $restResponse->addResource($restResource);
             }
-        }else{
+        } else {
             foreach ($faqCollectionTransfer->getFaqs()
                      as $faqTransfer) {
                 $restResource = $this->restResourceBuilder->createRestResource(
@@ -85,6 +85,27 @@ class FaqsReader implements FaqsReaderInterface
                 $restResponse->addResource($restResource);
             }
         }
+
+        return $restResponse;
+    }
+
+    /**
+     * @pararm \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
+     *
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
+     */
+    public function createFaq(RestRequestInterface $restRequest): RestResponseInterface
+    {
+        $restResponse = $this->restResourceBuilder->createRestResponse();
+        $faqTransfer = $restRequest->getAttributesDataFromRequest();
+        $idFaq = $faqTransfer['idFaq'];
+        $restResource = $this->restResourceBuilder->createRestResource(
+            FaqsRestApiConfig::RESOURCE_FAQS,
+            $idFaq,
+            $this->faqMapper->mapFaqDataToFaqRestAttributes($faqTransfer)
+        );
+
+            $restResponse->addResource($restResource);
 
         return $restResponse;
     }

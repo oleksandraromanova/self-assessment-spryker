@@ -30,4 +30,15 @@ class FaqsRestApiZedStub implements FaqsRestApiZedStubInterface
 
         return $faqCollectionTransfer;
     }
+
+    /**
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer
+     */
+    public function createFaq(FaqCollectionTransfer $faqCollectionTransfer): FaqCollectionTransfer
+    {
+        /** @var \Generated\Shared\Transfer\FaqCollectionTransfer $faqCollectionTransfer */
+        $faqCollectionTransfer = $this->zedRequestClient->call('/faq/gateway/create-rest-api-faq', $faqCollectionTransfer);
+
+        return $faqCollectionTransfer;
+    }
 }

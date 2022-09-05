@@ -33,7 +33,7 @@ class FaqTable extends AbstractTable
             PyzFaqTableMap::COL_ANSWER => 'Answer',
             PyzFaqTableMap::COL_EDIT => 'Edit',
             PyzFaqTableMap::COL_DELETE => 'Delete',
-            PyzFaqTableMap::COL_DEACTIVATE => 'Deactivate'
+            PyzFaqTableMap::COL_DEACTIVATE => 'Status'
         ]);
 
         $config->setSortable([
