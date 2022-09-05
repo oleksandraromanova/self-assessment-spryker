@@ -18,6 +18,7 @@ class FaqReader implements FaqReaderInterface
     {
         $this->faqRepository = $faqRepository;
     }
+
     /**
      * @param int $idFaq
      *
@@ -26,6 +27,22 @@ class FaqReader implements FaqReaderInterface
     public function findFaqById(int $idFaq): ?FaqTransfer
     {
         return $this->faqRepository->findFaqById($idFaq);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer
+     */
+    public function findFaq(FaqTransfer $faqTransfer): FaqTransfer
+    {
+        $faqTransfer = $this->faqRepository->findPyzFaqById($faqTransfer->getIdFaq());
+
+        if (!$faqTransfer) {
+            return new FaqTransfer();
+        }
+
+        return $faqTransfer;
     }
 
     /**

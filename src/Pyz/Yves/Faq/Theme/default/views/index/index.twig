@@ -1,16 +1,36 @@
 {% extends template('page-layout-main') %}
 
-{% define data = {
-    idFaq: _view.idFaq,
-    name: _view.name,
-    answer: _view.answer
+{% define datas = {
+    datas: _view.datas
 } %}
 
 
 {% block content %}
-    <div>
-        <h2>{{ data.name }}</h2>
-        <b>{{ data.answer }}</b>
-        <p>{{ data.idFaq }}</p>
-    </div>
+
+    <ul>
+        {% for data in datas %}
+            <li>{{ data.name }}</li>
+            <li>{{ data.answer }}</li>
+            <li>{{ data.active }}</li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}
+
+{#{% extends template('page-layout-main') %}#}
+
+{#{% define data = {#}
+{#    idFaq: _view.idFaq,#}
+{#    name: _view.name,#}
+{#    answer: _view.answer#}
+{#} %}#}
+
+
+{#{% block content %}#}
+{#    <div>#}
+{#        <h2>{{ data.name }}</h2>#}
+{#        <b>{{ data.answer }}</b>#}
+{#        <p>{{ data.idFaq }}</p>#}
+{#    </div>#}
+{#    #}
+{#{% endblock %}#}

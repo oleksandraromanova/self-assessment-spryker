@@ -2,12 +2,14 @@
 
 namespace Pyz\Yves\Faq\Controller;
 
+use Pyz\Zed\Faq\Business\FaqBusinessFactory;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Generated\Shared\Transfer\FaqTransfer;
 
 /**
  * @method \Pyz\Client\Faq\FaqClientInterface getClient()
+ * @method \Pyz\Zed\Faq\Business\FaqBusinessFactory getFactory()
  */
 class IndexController extends AbstractController
 {
@@ -20,24 +22,17 @@ class IndexController extends AbstractController
     {
         $faqTransfer = new FaqTransfer();
         $faqTransfer = $this->getClient()->reverseString($faqTransfer);
+        var_dump($faqTransfer);
 
-//        foreach ($faqTransfer as $faq) {
-//
-//            var_dump($faq);
-//        }
+        $datas = ['datas' => $faqTransfer];
 
-//        $data = ['idFaq' => 'id_faq',
-//            'name' => 'name',
-//            'answer' => 'answer'
+        //        $data = ['idFaq' => $faqTransfer['idFaq'],
+//            'name' => $faqTransfer['name'],
+//            'answer' => $faqTransfer['answer']
 //        ];
 
-        $data = ['idFaq' => $faqTransfer['idFaq'],
-            'name' => $faqTransfer['name'],
-            'answer' => $faqTransfer['answer']
-        ];
-
         return $this->view(
-            $data,
+            $datas,
             [],
             '@Faq/views/index/index.twig'
         );

@@ -12,24 +12,49 @@ interface FaqFacadeInterface
      * - stores Faq to the database based on input transfer
      * - returns enhanced `FaqTransfer` with ID
      *
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer
      * @api
+     *
+     */
+    public function saveFaq(FaqTransfer $faqTransfer): FaqTransfer;
+
+    /**
+     * Specification:
+     * - Creates a database record
      *
      * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
      *
      * @return \Generated\Shared\Transfer\FaqTransfer
+     * @api
+     *
      */
-    public function saveFaq(FaqTransfer $faqTransfer): FaqTransfer;
+    public function createFaqEntity(FaqTransfer $faqTransfer): FaqTransfer;
+
+    /**
+     * Specification:
+     * - Finds a record in database
+     *
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer
+     * @api
+     *
+     */
+    public function findFaq(FaqTransfer $faqTransfer): FaqTransfer;
+
 
     /**
      * Specification:
      * - removes Faq from the database based on input transfer
      * - returns redirect response
      *
-     * @api
-     *
      * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
      *
      * @return \Generated\Shared\Transfer\FaqTransfer
+     * @api
+     *
      */
     public function deleteFaq(FaqTransfer $faqTransfer): FaqTransfer;
 

@@ -26,6 +26,26 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
     }
 
     /**
+     * @param int $idFaq
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer|null
+     */
+    public function findPyzFaqById(int $idFaq): ?FaqTransfer
+    {
+        $faqEntity = $this->getFactory()
+            ->createFaqQuery()
+            ->filterByIdFaq($idFaq)
+            ->findOne();
+
+        if (!$faqEntity) {
+            return null;
+        }
+
+        return (new FaqTransfer())
+            ->fromArray($faqEntity->toArray(), true);
+    }
+
+    /**
      * @return \Orm\Zed\Faq\Persistence\PyzFaqQuery
      */
     private function createPyzFaqQuery(): PyzFaqQuery
