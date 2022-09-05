@@ -26,6 +26,26 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
     }
 
     /**
+     * @param int $idFaq
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer|null
+     */
+    public function findPyzFaqById(int $idFaq): ?FaqTransfer
+    {
+        $faqEntity = $this->getFactory()
+            ->createFaqQuery()
+            ->filterByIdFaq($idFaq)
+            ->findOne();
+
+        if (!$faqEntity) {
+            return null;
+        }
+
+        return (new FaqTransfer())
+            ->fromArray($faqEntity->toArray(), true);
+    }
+
+    /**
      * @return \Orm\Zed\Faq\Persistence\PyzFaqQuery
      */
     private function createPyzFaqQuery(): PyzFaqQuery
@@ -38,7 +58,7 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
      *
      * @return \Generated\Shared\Transfer\FaqTransfer
      */
-    private function mapEntityToTransfer(PyzFaq $faqEntity): FaqTransfer
+    public function mapEntityToTransfer(PyzFaq $faqEntity): FaqTransfer
     {
         return (new FaqTransfer())->fromArray($faqEntity->toArray());
     }
@@ -58,6 +78,25 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
         }
 
         return $faqsRestApiTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     * @return \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     * //* @return array
+     */
+    public function getFaqs(FaqTransfer $faqTransfer): FaqTransfer
+    {
+        $faqs = $this->createPyzFaqQuery()
+            ->find();
+
+        foreach ($faqs as $faqEntity) {
+            $faqTransfer = (new FaqTransfer())->fromArray($faqEntity->toArray());
+            //$faqTransfer->toArray();
+
+        }
+
+        return $faqTransfer;
     }
 
 }

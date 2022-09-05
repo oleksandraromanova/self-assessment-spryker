@@ -15,6 +15,14 @@ interface FaqRepositoryInterface
     public function findFaqById(int $idFaq): ?FaqTransfer;
 
     /**
+     * @param int $idFaq
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer|null
+     */
+    public function findPyzFaqById(int $idFaq): ?FaqTransfer;
+
+
+    /**
      * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
      * @return \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
      */

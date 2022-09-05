@@ -4,6 +4,7 @@ namespace Pyz\Zed\Faq\Persistence;
 
 use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
+use Orm\Zed\Faq\Persistence\PyzFaq;
 use Orm\Zed\Faq\Persistence\PyzFaqQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 class FaqEntityManager extends AbstractEntityManager implements FaqEntityManagerInterface
@@ -25,6 +26,23 @@ class FaqEntityManager extends AbstractEntityManager implements FaqEntityManager
         $faqEntity->save();
 // update transfer based on entity (like id_faq field)
         $faqTransfer->fromArray($faqEntity->toArray());
+
+        return $faqTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer
+     */
+    public function saveFaqEntity(FaqTransfer $faqTransfer): FaqTransfer
+    {
+        $faqEntity = new PyzFaq();
+        $faqEntity->fromArray($faqTransfer->modifiedToArray());
+        $faqEntity->save();
+
+        $faqTransfer->fromArray($faqEntity->toArray(), true);
+
         return $faqTransfer;
     }
 

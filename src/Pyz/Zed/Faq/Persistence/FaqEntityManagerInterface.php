@@ -15,6 +15,13 @@ interface FaqEntityManagerInterface
     public function saveFaq(FaqTransfer $faqTransfer): FaqTransfer;
 
     /**
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqTransfer
+     *
+     * @return \Generated\Shared\Transfer\FaqTransfer
+     */
+    public function saveFaqEntity(FaqTransfer $faqTransfer): FaqTransfer;
+
+    /**
      * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
      *
      * @return \Generated\Shared\Transfer\FaqTransfer
